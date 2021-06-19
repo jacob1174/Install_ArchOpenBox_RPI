@@ -1,0 +1,38 @@
+####Original Antergos Configuration
+
+#nitrogen --restore &
+#volumeicon &
+#compton --config ~/.config/compton.conf -b &
+#tint2 &
+#plank &
+#conky -c ~/.config/conky.conf &
+#lxpolkit &
+
+
+#### Personal Configuration
+
+
+##compositor
+compton --config ~/.config/compton.conf -b &
+
+# Launch Variety
+variety &
+
+##volume icons
+
+# Launch Plank
+plank &
+
+##panels
+tint2 &
+
+##PolicyKit authentication
+udiskie &
+
+
+
+
+
+
+
+
