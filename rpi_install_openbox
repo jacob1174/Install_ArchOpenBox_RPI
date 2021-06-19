@@ -1,0 +1,304 @@
+#!/bin/bash
+set -e
+
+# Written to be used to install Openbox on Raspberry Pi 4
+
+echo "###############################################################"
+echo "######### Installing yay ######################################"
+echo "###############################################################"
+
+sudo pacman -S yay --needed --noconfirm
+
+echo "################################################################"
+echo "############# yay has been installed ###########################"
+echo "################################################################"
+
+echo "################################################################"
+echo "#######Installing Xorg ###### Installing Xorg ##################"
+echo "################################################################"
+
+sudo pacman -S xorg-server xorg-xinit xorg-xkill --noconfirm
+
+echo "################################################################"
+echo "############# xorg has been installed #######################"
+echo "################################################################"
+
+echo "################################################################"
+echo "#############Installing Lightdm ################################"
+echo "################################################################"
+
+sudo pacman -S lightdm --noconfirm
+sudo pacman -S lightdm-gtk-greeter --noconfirm
+sudo pacman -S lightdm-gtk-greeter-settings --noconfirm
+sudo pacman -S ttf-dejavu ttf-liberation --confirm
+
+echo "################################################################"
+echo "####### Enabling Lightdm Service ###############"
+echo "################################################################"
+
+sudo systemctl enable lightdm.service
+
+echo "################################################################"
+echo "############# Lightdm has been installed #######################"
+echo "###################    and   ###################################"
+echo "############# Lightdm has been enabled   #######################"
+echo "################################################################"
+
+echo "################################################################"
+echo "#############Installing Openbox ################################"
+echo "################################################################"
+
+sudo pacman -S openbox  --noconfirm
+sudo pacman -S obconf  --noconfirm
+sudo pacman -S lxappearance-obconf --noconfirm
+sudo pacman -S xfce4-terminal --noconfirm
+sudo pacman -S pcmanfm --noconfirm
+sudo pacman -S gedit --noconfirm
+sudo pacman -S menumaker --noconfirm
+sudo pacman -S firefox --noconfirm
+sudo pacman -S tint2 --noconfirm
+
+echo "################################################################"
+echo "############# Openbox has been installed #######################"
+echo "################################################################"
+
+echo "################################################################"
+echo "#########        Installing Sound Software      ################"
+echo "################################################################"
+
+sudo pacman -S pulseaudio pulseaudio-alsa pavucontrol pasystray alsa-utils alsa-plugins alsa-lib alsa-firmware gst-plugins-good gst-plugins-bad gst-plugins-base gst-plugins-ugly  gstreamer  --noconfirm
+
+echo "################################################################"
+echo "#########      Sound Software installed         ################"
+echo "################################################################"
+
+echo "################################################################"
+echo "########   Installing Network Management Software   ############"
+echo "################################################################"
+
+sudo pacman -S networkmanager network-manager-applet --noconfirm
+
+sudo systemctl enable NetworkManager.service
+
+echo "################################################################"
+echo "#########   Network Management Software installed  #############"
+echo "#########################  and  ################################"
+echo "#########         Networkmanger is enabled         #############"
+echo "################################################################"
+
+echo "################################################################"
+echo "#########   Installing Basic desktop components ################"
+echo "################################################################"
+
+echo "################################################################"
+echo "#########     Installing from Arch repository   ################"
+echo "################################################################"
+
+
+sudo pacman -S catfish --noconfirm
+sudo pacman -S gnome-disk-utility --noconfirm
+sudo pacman -S gparted --noconfirm
+sudo pacman -S htop --noconfirm
+sudo pacman -S net-tools --noconfirm
+sudo pacman -S openvpn --noconfirm
+sudo pacman -S plank --noconfirm
+sudo pacman -S smplayer --noconfirm
+sudo pacman -S transmission-gtk --noconfirm
+sudo pacman -S nitrogen --noconfirm
+sudo pacman -S wget --noconfirm
+sudo pacman -S polkit udisks2 udiskie ntfs-3g --noconfirm
+sudo pacman -S geany --noconfirm
+sudo pacman -S lxinput --noconfirm
+sudo pacman -S lxappearance --noconfirm
+sudo pacman -S libglade --noconfirm
+sudo pacman -S python2-cairo --noconfirm
+sudo pacman -S python2-numpy --noconfirm
+sudo pacman -S python2 --noconfirm
+sudo pacman -S libreoffice-fresh --noconfirm
+sudo pacman -S xfce4-appfinder --noconfirm
+sudo pacman -S xfce4-notifyd --noconfirm
+sudo pacman -S xfce4-power-manager --noconfirm
+sudo pacman -S xfce4-screenshooter --noconfirm
+sudo pacman -S xfce4-settings --noconfirm
+sudo pacman -S chromium --noconfirm
+sudo pacman -S papirus-icon-theme --noconfirm
+sudo pacman -S arc-icon-theme --noconfirm
+sudo pacman -S arc-gtk-theme --noconfirm
+sudo pacman -S arc-solid-gtk-theme --noconfirm
+
+echo "################################################################"
+echo "#########     Arch repository Complete          ################"
+echo "################################################################"
+
+
+package="noto-fonts"
+
+#----------------------------------------------------------------------------------
+
+#checking if application is already installed or else install with aur helpers
+if pacman -Qi $package &> /dev/null; then
+
+	echo "################################################################"
+	echo "################## "$package" is already installed"
+	echo "################################################################"
+
+else
+
+	#checking which helper is installed
+
+	if pacman -Qi yay &> /dev/null; then
+		
+		echo "Installing with yay"
+		yay -S --noconfirm $package
+			  	
+	fi
+
+	# Just checking if installation was successful
+	if pacman -Qi $package &> /dev/null; then
+	
+	echo "################################################################"
+	echo "#########  "$package" has been installed"
+	echo "################################################################"
+
+	else
+
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	echo "!!!!!!!!!  "$package" has NOT been installed"
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+	fi
+
+fi
+
+
+package="ttf-roboto"
+
+#----------------------------------------------------------------------------------
+
+#checking if application is already installed or else install with aur helpers
+if pacman -Qi $package &> /dev/null; then
+
+	echo "################################################################"
+	echo "################## "$package" is already installed"
+	echo "################################################################"
+
+else
+
+	#checking which helper is installed
+
+	if pacman -Qi yay &> /dev/null; then
+		
+		echo "Installing with yay"
+		yay -S --noconfirm $package
+			  	
+	fi
+
+	# Just checking if installation was successful
+	if pacman -Qi $package &> /dev/null; then
+	
+	echo "################################################################"
+	echo "#########  "$package" has been installed"
+	echo "################################################################"
+
+	else
+
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	echo "!!!!!!!!!  "$package" has NOT been installed"
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+	fi
+
+fi
+
+
+package="ttf-font-awesome"
+
+#----------------------------------------------------------------------------------
+
+#checking if application is already installed or else install with aur helpers
+if pacman -Qi $package &> /dev/null; then
+
+	echo "################################################################"
+	echo "################## "$package" is already installed"
+	echo "################################################################"
+
+else
+
+	#checking which helper is installed
+
+	if pacman -Qi yay &> /dev/null; then
+		
+		echo "Installing with yay"
+		yay -S --noconfirm $package
+			  	
+	fi
+
+	# Just checking if installation was successful
+	if pacman -Qi $package &> /dev/null; then
+	
+	echo "################################################################"
+	echo "#########  "$package" has been installed"
+	echo "################################################################"
+
+	else
+
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	echo "!!!!!!!!!  "$package" has NOT been installed"
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+	fi
+
+fi
+
+
+package="breeze-snow-cursor-theme"
+
+
+#----------------------------------------------------------------------------------
+
+#checking if application is already installed or else install with aur helpers
+if pacman -Qi $package &> /dev/null; then
+
+	echo "################################################################"
+	echo "################## "$package" is already installed"
+	echo "################################################################"
+
+else
+
+	#checking which helper is installed
+
+	if pacman -Qi yay &> /dev/null; then
+		
+		echo "Installing with yay"
+		yay -S --noconfirm $package
+			  	
+	fi
+
+	# Just checking if installation was successful
+	if pacman -Qi $package &> /dev/null; then
+	
+	echo "################################################################"
+	echo "#########  "$package" has been installed"
+	echo "################################################################"
+
+	else
+
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	echo "!!!!!!!!!  "$package" has NOT been installed"
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+	fi
+
+fi
+
+echo "################################################################"
+echo "#########        Installation Complete          ################"
+echo "################################################################"
+
+
+
+
+
+
+
+
