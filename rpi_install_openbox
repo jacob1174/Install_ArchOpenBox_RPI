@@ -30,7 +30,7 @@ echo "################################################################"
 sudo pacman -S lightdm --noconfirm
 sudo pacman -S lightdm-gtk-greeter --noconfirm
 sudo pacman -S lightdm-gtk-greeter-settings --noconfirm
-sudo pacman -S ttf-dejavu ttf-liberation --confirm
+sudo pacman -S ttf-dejavu ttf-liberation --noconfirm
 
 echo "################################################################"
 echo "####### Enabling Lightdm Service ###############"
